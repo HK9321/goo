@@ -53,8 +53,8 @@ MIT
 
 * 删除别名:
 
-    $ goo -d [alias]
+        $ goo -d [alias]
 
 * 删除主机 (同时会删除别名):
 
-    $ goo -d [host]
+        $ goo -d [host]
