@@ -77,7 +77,7 @@ def assign_alias(host, alias):
         if alias in ALIAS and ALIAS[alias] != host:
             print('You already assign "%s" to "%s"' % (alias, ALIAS[alias]))
             times = 3
-            ensure = raw_input('Are you sure assign it to "%s"? (y/n) ' % host).upper()
+            ensure = raw_input('Are you sure re-assign it to "%s"? (y/n) ' % host).upper()
             while times > 0:
                 if ensure in ['Y', 'YES']:
                     break
@@ -140,13 +140,14 @@ def show_hosts():
 
     if HOSTS:
         print('You manage these hosts:')
-        print('   ', 'Host'.ljust(15), 'Alias')
-        print('   ', '-' * 15, '-' * 8)
-        for host in sorted(HOSTS.keys()):
+        print('   ' + 'Host'.ljust(15) + 'Alias')
+        print('   ' + '-' * 15 + '-' * 8)
+        sorter = lambda ip: [int(i) for i in ip.split('.')]
+        for host in sorted(HOSTS.keys(), key=sorter):
             als = sorted(alias_dict.get(host, ''))
-            print('   ', host.ljust(15), ', '.join(als).ljust(8))
+            print('   ' + host.ljust(15) + ', '.join(als).ljust(8))
     else:
-        print('You have not assigned any alias')
+        print("You don't have any host")
 
 
 def set_window_size(expect):
@@ -282,13 +283,13 @@ if __name__ == '__main__':
     try:
         import pexpect
     except:
-        print("You need 'pexpect' package to run this")
+        print("You have to install 'pexpect' package before running")
         sys.exit(1)
     # check ssh
     try:
         ssh = pexpect.spawn('ssh')
     except:
-        print('You have not installed ssh')
+        print("You have to install 'ssh' package before running")
         sys.exit(1)
 
     signal.signal(signal.SIGWINCH, sigwinch_passthrough)
