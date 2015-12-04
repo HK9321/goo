@@ -14,7 +14,7 @@ MIT
 安装
 -----
 
-将 `goo` 文件放置到 `/usr/local/bin` 路径下 (或任何 `$PATH` 中的目录) 即可。
+运行 `python ./setup.py install` 即可。
 
 
 使用

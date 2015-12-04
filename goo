@@ -13,6 +13,12 @@ from json import dump, load
 from collections import defaultdict
 from optparse import OptionParser
 
+# check pexpect
+try:
+    import pexpect
+except ImportError:
+    print("You have to install 'pexpect' package before running")
+    sys.exit(1)
 
 HOSTS = {}
 ALIAS = {}
@@ -284,12 +290,6 @@ if __name__ == '__main__':
         show_hosts()
         sys.exit(0)
 
-    # check pexpect
-    try:
-        import pexpect
-    except:
-        print("You have to install 'pexpect' package before running")
-        sys.exit(1)
     # check ssh
     try:
         ssh = pexpect.spawn('ssh')
