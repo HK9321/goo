@@ -14,4 +14,3 @@ setup(
     install_requires=["pexpect>=3.3.0"],
     scripts=['goo']
 )
-
